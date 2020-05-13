@@ -16,15 +16,34 @@ class HomePage extends Component {
 
   render() {
     const { trendingMovies } = this.state;
+    console.log(trendingMovies);
+    console.log('this.props HOME', this.props);
     return (
       <div>
         <h2>Trending today</h2>
         <ul>
-          {trendingMovies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
-            </li>
-          ))}
+          {trendingMovies.length !== 0 ? (
+            <>
+              {trendingMovies.map(movie => (
+                <li key={movie.id}>
+                  <Link
+                    id={movie.id}
+                    to={{
+                      pathname: `movies/${movie.id}`,
+                      state: {
+                        from: this.props.match.url,
+                        query: this.props.location.search,
+                      },
+                    }}
+                  >
+                    {movie.title}
+                  </Link>
+                </li>
+              ))}
+            </>
+          ) : (
+            ''
+          )}
         </ul>
       </div>
     );

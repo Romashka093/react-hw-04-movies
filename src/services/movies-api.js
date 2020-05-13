@@ -6,7 +6,7 @@ export default {
   async getTrendingMovies() {
     try {
       const movies = await axios
-        .get(`/3/trending/all/day?api_key=${process.env.REACT_APP_KEY}`)
+        .get(`/3/trending/movie/day?api_key=${process.env.REACT_APP_KEY}`)
         .then(movies => movies.data.results);
       console.log(movies);
       return movies;
@@ -62,7 +62,7 @@ export default {
   },
 };
 
-// export const getTrendingMovies = () => axios.get(`/3/trending/all/day?api_key=${process.env.REACT_APP_KEY}`);
+// export const getTrendingMovies = () => axios.get(`/3/trending/movie/week?api_key=${process.env.REACT_APP_KEY}`);
 // console.log(getTrendingMovies());
 
 // export const getMoviesBySearch = (searchQuery) =>

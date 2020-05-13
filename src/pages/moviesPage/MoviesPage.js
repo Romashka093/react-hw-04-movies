@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moviesAPI from '../../services/movies-api';
 import { Link } from 'react-router-dom';
-
+import queryString from 'query-string';
 // import css from './MoviesPage.module.css';
 
 // moviesAPI.getMoviesBySearch()
@@ -11,6 +11,25 @@ class MoviesPage extends Component {
     movies: [],
     searchQuery: '',
   };
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    const searchParam = queryString.parse(this.props.location.search);
+    console.log('this.props', this.props.location.search);
+    console.log(searchParam.query);
+
+    if (searchParam.query) {
+      this.serchMovies(searchParam.query);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevParam = queryString.parse(prevProps.location.search);
+    const searchParam = queryString.parse(this.props.location.search);
+    if (prevParam.query !== searchParam.query) {
+      this.serchMovies(searchParam.query);
+    }
+  }
 
   serchMovies = searchQuery => {
     moviesAPI.getMoviesBySearch(searchQuery).then(movies =>
@@ -31,8 +50,10 @@ class MoviesPage extends Component {
     if (this.state.searchQuery === '') {
       return;
     }
+    this.props.history.push({
+      search: `?query=${this.state.searchQuery}`,
+    });
     this.serchMovies(this.state.searchQuery);
-    this.setState({ searchQuery: '' });
   };
 
   render() {
@@ -54,7 +75,16 @@ class MoviesPage extends Component {
             <>
               {movies.map(movie => (
                 <li key={movie.id}>
-                  <Link id={movie.id} to={`/movies/${movie.id}`}>
+                  <Link
+                    id={movie.id}
+                    to={{
+                      pathname: `movies/${movie.id}`,
+                      state: {
+                        from: this.props.match.url,
+                        query: this.props.location.search,
+                      },
+                    }}
+                  >
                     {movie.title}
                   </Link>
                 </li>

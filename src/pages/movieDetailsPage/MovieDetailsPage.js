@@ -1,49 +1,44 @@
 import React, { Component, Fragment } from 'react';
-import { Cast } from './cast/Cast';
-import { Reviews } from './reviews/Reviews';
-import { Route, Link } from 'react-router-dom';
-// import { withRouter } from 'react-router-dom';
+import Cast from './cast/Cast';
+import Reviews from './reviews/Reviews';
+import { Route, Link, Switch } from 'react-router-dom';
 import moviesAPI from '../../services/movies-api';
 
 // import css from './MovieDetailsPage.module.css';
 
-// let ganresItems;
-// if (movie) {
-// 	ganresItems = movie.map((ganre) => {
-// 		return <li key={ganre.id}>{ganre.name}</li>;
-// 	});
-// 	return <li>{ganresItems}</li>;
-// }
-
 class MovieDetailsPage extends Component {
   state = {
     movie: [],
+    info: '',
   };
 
   componentDidMount() {
     const id = this.getMovieId(this.props);
     moviesAPI
       .getMovieDetails(id)
-      .then(movie => this.setState({ movie: movie.data, id }));
-    console.log('componentDidMount');
-    // console.log(this.state.movie.genres.length);
+      .then(movie =>
+        this.setState({ movie: movie.data, info: this.props.location.state }),
+      );
   }
 
   getMovieId = props => props.match.params.movieId;
 
+  handleChangeButton = () => {
+    this.props.history.push({
+      pathname: this.state.info.from,
+      search: this.state.info.query,
+    });
+  };
+
   render() {
-    console.log(this.state);
-    console.log('match: ', this.props.match);
     const { movie } = this.state;
-    console.log('movie: ', movie);
     const ganres = movie.genres;
-    console.log(ganres);
 
     return (
       <div>
         {movie && (
           <Fragment>
-            <button>&#8592; Go back</button>
+            <button onClick={this.handleChangeButton}>&#8592; Go back</button>
             <br />
             <img
               src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
@@ -58,29 +53,38 @@ class MovieDetailsPage extends Component {
               <p>{movie.overview} </p>
               <h4>Genres: </h4>
               <ul>
-                {/* <p>{ganres[0]}</p> */}
-                {/* {movie.ganres !== 0 && (
-									<Fragment>
-										{movie.ganres.map((genre) => <li key={genre.id}>{genre.name}</li>)}
-									</Fragment>
-								)} */}
+                {ganres
+                  ? ganres.map(genre => <li key={genre.id}>{genre.name} </li>)
+                  : null}
               </ul>
             </section>
             <section>
               <p>Additional information</p>
               <ul>
                 <li>
-                  <Link to="/movies/:movieId/cast">Cast</Link>
+                  <Link
+                    to={{
+                      pathname: `/movies/${this.props.match.params.movieId}/cast`,
+                    }}
+                  >
+                    Cast
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/movies/:movieId/reviews">Reviews</Link>
+                  <Link
+                    to={{
+                      pathname: `/movies/${this.props.match.params.movieId}/reviews`,
+                    }}
+                  >
+                    Reviews
+                  </Link>
                 </li>
               </ul>
             </section>
-            {/* <Switch> */}
-            <Route path="/movies/:movieId/cast" component={Cast} />
-            <Route path="/movies/:movieId/reviews" component={Reviews} />
-            {/* </Switch> */}
+            <Switch>
+              <Route path="/movies/:movieId/cast" component={Cast} />
+              <Route path="/movies/:movieId/reviews" component={Reviews} />
+            </Switch>
           </Fragment>
         )}
       </div>
