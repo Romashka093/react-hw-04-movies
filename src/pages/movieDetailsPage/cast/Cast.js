@@ -37,8 +37,7 @@ class Cast extends Component {
           ) : (
             // eslint-disable-next-line jsx-a11y/accessible-emoji
             <h2>
-              Sorry, we don't added any actors for today, please come back later
-              🎬
+              No actors for this movie for today, please come back later 🎬
             </h2>
           )}
         </div>
