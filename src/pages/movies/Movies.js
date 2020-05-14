@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import moviesAPI from '../../services/movies-api';
-import { Link } from 'react-router-dom';
 import queryString from 'query-string';
-// import css from './MoviesPage.module.css';
+import MoviesItem from '../../components/moviesItem/MoviesItem';
+// import css from './Movies.module.css';
 
-// moviesAPI.getMoviesBySearch()
-
-class MoviesPage extends Component {
+class Movies extends Component {
   state = {
     movies: [],
     searchQuery: '',
@@ -67,38 +65,14 @@ class MoviesPage extends Component {
             autoFocus
             value={searchQuery}
             onChange={this.handleChange}
+            name="search"
           />
           <button type="submit">Search</button>
         </form>
-        <ul>
-          {movies.length !== 0 ? (
-            <>
-              {movies.map(movie => (
-                <li key={movie.id}>
-                  <Link
-                    id={movie.id}
-                    to={{
-                      pathname: `movies/${movie.id}`,
-                      state: {
-                        from: this.props.match.url,
-                        query: this.props.location.search,
-                      },
-                    }}
-                  >
-                    {movie.title}
-                  </Link>
-                </li>
-              ))}
-            </>
-          ) : (
-            <li>
-              <p>Try to enter movie name</p>
-            </li>
-          )}
-        </ul>
+        {movies && <MoviesItem {...this.props} movies={movies} />}
       </div>
     );
   }
 }
 
-export default MoviesPage;
+export default Movies;

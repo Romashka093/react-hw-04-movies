@@ -1,11 +1,24 @@
-import React, { Component } from 'react';
-import { Navigation } from './components/navigation/Navigation';
+import React, { Component, lazy, Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import HomePage from './pages/homePage/HomePage';
-import MoviesPage from './pages/moviesPage/MoviesPage';
-import MovieDetailsPage from './pages/movieDetailsPage/MovieDetailsPage';
-import { Notification } from './components/notification/Notification';
-// import * as moviesAPI from './services/movies-api'
+import Navigation from './components/navigation/Navigation';
+import Spinner from './components/spinner/Spinner';
+
+const Home = lazy(() =>
+  import('./pages/maine/Home' /* webpackChunkName: "HomePage" */),
+);
+const Movies = lazy(() =>
+  import('./pages/movies/Movies' /* webpackChunkName: "MoviePage" */),
+);
+const MovieDetails = lazy(() =>
+  import(
+    './pages/movieDetails/MovieDetails' /* webpackChunkName: "MovieDetailsPage" */
+  ),
+);
+const Notification = lazy(() =>
+  import(
+    './components/notification/Notification' /* webpackChunkName: "NotFoundPage" */
+  ),
+);
 
 class App extends Component {
   state = {};
@@ -14,13 +27,15 @@ class App extends Component {
     return (
       <>
         <Navigation />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/movies/:movieId" component={MovieDetailsPage} />
-          <Route path="/movies" component={MoviesPage} />
-          <Route component={Notification} />
-          <Redirect to="/" />
-        </Switch>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/movies/:movieId" component={MovieDetails} />
+            <Route path="/movies" component={Movies} />
+            <Route component={Notification} />
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
       </>
     );
   }
