@@ -8,7 +8,6 @@ export default {
       const movies = await axios
         .get(`/3/trending/movie/day?api_key=${process.env.REACT_APP_KEY}`)
         .then(movies => movies.data.results);
-      console.log(movies);
       return movies;
     } catch (error) {
       console.log(error);
@@ -20,7 +19,6 @@ export default {
       const movie = await axios.get(
         `/3/search/movie?api_key=${process.env.REACT_APP_KEY}&query=${query}&page=1&include_adult=false`,
       );
-      console.log(movie);
       return movie;
     } catch (error) {
       console.log(error);
@@ -32,7 +30,6 @@ export default {
       const details = await axios.get(
         `/3/movie/${id}?api_key=${process.env.REACT_APP_KEY}`,
       );
-      console.log(details);
       return details;
     } catch (error) {
       console.log(error);
@@ -43,7 +40,6 @@ export default {
       const actors = await axios
         .get(`/3/movie/${id}/credits?api_key=${process.env.REACT_APP_KEY}`)
         .then(actors => actors.data.cast);
-      console.log(actors);
       return actors;
     } catch (error) {
       console.log(error);
@@ -54,7 +50,6 @@ export default {
       const reviews = await axios.get(
         `/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_KEY}`,
       );
-      console.log(reviews);
       return reviews;
     } catch (error) {
       console.log(error);

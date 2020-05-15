@@ -5,6 +5,7 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 // import Reviews from './reviews/Reviews';
 import css from './MovieDetails.module.css';
 import Spinner from '../../components/spinner/Spinner';
+import Button from '@material-ui/core/Button';
 
 const Cast = lazy(() =>
   import('./cast/Cast' /* webpackChunkName: "CastPage" */),
@@ -23,7 +24,6 @@ class MovieDetails extends Component {
   };
 
   componentDidMount() {
-    console.log('componentDidMount');
     const id = getMovieId(this.props);
     moviesAPI.getMovieDetails(id).then(movie =>
       this.setState({
@@ -61,7 +61,15 @@ class MovieDetails extends Component {
       <div>
         {movie && (
           <div>
-            <button onClick={this.handleChangeButton}>&#8592; Go back</button>
+            <Button
+              onClick={this.handleChangeButton}
+              type="submit"
+              size="large"
+              variant="outlined"
+              color="primary"
+            >
+              &#8592; Go back
+            </Button>
             <br />
             <img
               src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}

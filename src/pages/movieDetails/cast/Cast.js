@@ -1,5 +1,4 @@
 import React from 'react';
-
 // import css from './Cast.module.css';
 
 const Cast = ({ actors }) => {

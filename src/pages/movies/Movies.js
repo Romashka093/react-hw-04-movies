@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import moviesAPI from '../../services/movies-api';
 import queryString from 'query-string';
 import MoviesItem from '../../components/moviesItem/MoviesItem';
-// import css from './Movies.module.css';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class Movies extends Component {
   state = {
@@ -11,10 +12,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    console.log('componentDidMount');
     const searchParam = queryString.parse(this.props.location.search);
-    console.log('this.props', this.props.location.search);
-    console.log(searchParam.query);
 
     if (searchParam.query) {
       this.serchMovies(searchParam.query);
@@ -59,15 +57,19 @@ class Movies extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="enter movie name"
+          <TextField
+            id="outlined-search"
+            label="Movie name"
             type="search"
+            variant="outlined"
             autoFocus
             value={searchQuery}
             onChange={this.handleChange}
             name="search"
           />
-          <button type="submit">Search</button>
+          <Button type="submit" size="large" variant="outlined" color="primary">
+            Search
+          </Button>
         </form>
         {movies && <MoviesItem {...this.props} movies={movies} />}
       </div>

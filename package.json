@@ -3,14 +3,19 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@material-ui/core": "^4.9.14",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
+        "axios": "^0.19.2",
         "gh-pages": "^2.2.0",
+        "lazy": "^1.0.11",
+        "prop-types": "^15.7.2",
         "query-string": "^6.12.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-loader-spinner": "^3.1.14",
+        "react-router-dom": "^5.1.2",
         "react-scripts": "3.4.1"
     },
     "homepage": "https://romashka093.github.io/react-hw-04-movies/",
@@ -38,13 +43,8 @@
         ]
     },
     "devDependencies": {
-        "axios": "^0.19.2",
-        "history": "^4.10.1",
         "husky": "^4.2.5",
-        "lazy": "^1.0.11",
         "lint-staged": "^10.2.2",
-        "prettier": "^2.0.5",
-        "prop-types": "^15.7.2",
-        "react-router-dom": "^5.1.2"
+        "prettier": "^2.0.5"
     }
 }
