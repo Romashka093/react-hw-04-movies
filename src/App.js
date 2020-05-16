@@ -2,6 +2,7 @@ import React, { Component, lazy, Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Navigation from './components/navigation/Navigation';
 import Spinner from './components/spinner/Spinner';
+import css from './index.module.css';
 
 const Home = lazy(() =>
   import('./pages/maine/Home' /* webpackChunkName: "HomePage" */),
@@ -25,7 +26,7 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <div className={css.conteiner}>
         <Navigation />
         <Suspense fallback={<Spinner />}>
           <Switch>
@@ -36,7 +37,7 @@ class App extends Component {
             <Redirect to="/" />
           </Switch>
         </Suspense>
-      </>
+      </div>
     );
   }
 }

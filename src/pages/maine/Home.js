@@ -19,7 +19,7 @@ class Home extends Component {
     const { trendingMovies } = this.state;
     return (
       <div>
-        <h2>Trending today</h2>
+        <h2>Trending movies for today</h2>
         {trendingMovies ? (
           <MoviesItem {...this.props} movies={trendingMovies} />
         ) : (

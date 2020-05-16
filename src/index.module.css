@@ -24,3 +24,20 @@ ul,
 ol {
   list-style: none;
 }
+
+.conteiner {
+  width: 300px;
+  margin: 50px auto 0;
+}
+
+@media (min-width: 600px) {
+  .conteiner {
+    width: 600px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .conteiner {
+    width: 1200px;
+  }
+}

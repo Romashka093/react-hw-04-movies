@@ -1,0 +1,9 @@
+.cardActionArea {
+  display: inline-table;
+  width: 280px;
+  margin: 10px;
+}
+
+.movieTitle img {
+  border-radius: 4px;
+}
