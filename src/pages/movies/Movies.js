@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import moviesAPI from '../../services/movies-api';
 import queryString from 'query-string';
+import MoviesSearcher from './MoviesSearcher';
 import MoviesItem from '../../components/moviesItem/MoviesItem';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 class Movies extends Component {
   state = {
@@ -56,21 +55,11 @@ class Movies extends Component {
     const { movies, searchQuery } = this.state;
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="outlined-search"
-            label="Movie name"
-            type="search"
-            variant="outlined"
-            autoFocus
-            value={searchQuery}
-            onChange={this.handleChange}
-            name="search"
-          />
-          <Button type="submit" size="large" variant="outlined" color="primary">
-            Search
-          </Button>
-        </form>
+        <MoviesSearcher
+          handleSubmit={this.handleSubmit}
+          searchQuery={searchQuery}
+          handleChange={this.handleChange}
+        />
         {movies && <MoviesItem {...this.props} movies={movies} />}
       </div>
     );

@@ -1,8 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import moviesAPI from '../../services/movies-api';
 import { Route, NavLink, Switch } from 'react-router-dom';
-// import Cast from './cast/Cast';
-// import Reviews from './reviews/Reviews';
 import css from './MovieDetails.module.css';
 import Spinner from '../../components/spinner/Spinner';
 import Button from '@material-ui/core/Button';
@@ -78,7 +76,6 @@ class MovieDetails extends Component {
 
             <section>
               <h2>{movie.title}</h2>
-              <span>{movie.original_title}</span>
               <p>User score: {Math.round(movie.popularity)}%</p>
               <h3>Overview</h3>
               <p>{movie.overview} </p>

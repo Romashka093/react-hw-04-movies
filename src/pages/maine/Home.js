@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moviesAPI from '../../services/movies-api';
 import MoviesItem from '../../components/moviesItem/MoviesItem';
 import Spinner from '../../components/spinner/Spinner';
-// import css from './Home.module.css';
+import { Typography } from '@material-ui/core';
 
 class Home extends Component {
   state = {
@@ -19,7 +19,15 @@ class Home extends Component {
     const { trendingMovies } = this.state;
     return (
       <div>
-        <h2>Trending movies for today</h2>
+        <Typography
+          align="center"
+          color="textSecondary"
+          variant="h3"
+          component="h2"
+        >
+          Trending movies for today
+        </Typography>
+
         {trendingMovies ? (
           <MoviesItem {...this.props} movies={trendingMovies} />
         ) : (
