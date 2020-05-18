@@ -2,8 +2,11 @@ import React, { Component, lazy, Suspense } from 'react';
 import moviesAPI from '../../services/movies-api';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import css from './MovieDetails.module.css';
+import globalcss from '../../index.module.css';
 import Spinner from '../../components/spinner/Spinner';
 import Button from '@material-ui/core/Button';
+import { Paper } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const Cast = lazy(() =>
   import('./cast/Cast' /* webpackChunkName: "CastPage" */),
@@ -56,7 +59,7 @@ class MovieDetails extends Component {
     const ganres = movie.genres;
 
     return (
-      <div>
+      <Paper elevation={3}>
         {movie && (
           <div>
             <Button
@@ -68,24 +71,39 @@ class MovieDetails extends Component {
             >
               &#8592; Go back
             </Button>
-            <br />
-            <img
-              src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
-              alt=""
-            />
+            <div className={globalcss.conteiner}>
+              <div className={css.wrapItemDetails}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                  alt=""
+                />
 
-            <section>
-              <h2>{movie.title}</h2>
-              <p>User score: {Math.round(movie.popularity)}%</p>
-              <h3>Overview</h3>
-              <p>{movie.overview} </p>
-              <h4>Genres: </h4>
-              <ul>
-                {ganres
-                  ? ganres.map(genre => <li key={genre.id}>{genre.name} </li>)
-                  : null}
-              </ul>
-            </section>
+                <section>
+                  <Typography variant="h2" component="h2">
+                    {movie.title}
+                  </Typography>
+                  <Typography color="textSecondary" component="p">
+                    User score: {Math.round(movie.popularity)}%
+                  </Typography>
+                  <Typography variant="h4" component="h4">
+                    Overview:
+                  </Typography>
+                  <Typography color="textSecondary" component="p">
+                    {movie.overview}{' '}
+                  </Typography>
+                  <Typography variant="h5" component="h5">
+                    Genres:{' '}
+                  </Typography>
+                  <ul>
+                    {ganres
+                      ? ganres.map(genre => (
+                          <li key={genre.id}>{genre.name} </li>
+                        ))
+                      : null}
+                  </ul>
+                </section>
+              </div>
+            </div>
             <section>
               <p>Additional information</p>
               <ul>
@@ -129,7 +147,7 @@ class MovieDetails extends Component {
             </Suspense>
           </div>
         )}
-      </div>
+      </Paper>
     );
   }
 }
