@@ -1,0 +1,1 @@
+{"version":3,"sources":["MoviesItem.module.css"],"names":[],"mappings":"AAAA,6BACE,YAAa,CACb,6BAA8B,CAC9B,cACF","file":"MoviePage.658aa899.chunk.css","sourcesContent":[".cardsArea {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n}\n"]}
