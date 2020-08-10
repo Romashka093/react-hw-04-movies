@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import css from './MoviesItem.module.css';
 
 const useStyles = makeStyles({
   root: {
@@ -14,6 +13,11 @@ const useStyles = makeStyles({
     maxWidth: 300,
     marginBottom: 10,
     marginTop: 10,
+  },
+  cardsArea: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
 });
 
@@ -23,7 +27,7 @@ export default function MoviesItem({ movies, match, location }) {
   return (
     <div>
       {movies.length !== 0 && (
-        <ul className={css.cardsArea}>
+        <ul className={classes.cardsArea}>
           {movies.map(movie => (
             <li key={movie.id} className={classes.root}>
               <Card elevation={3}>

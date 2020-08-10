@@ -56,21 +56,3 @@ export default {
     }
   },
 };
-
-// export const getTrendingMovies = () => axios.get(`/3/trending/movie/week?api_key=${process.env.REACT_APP_KEY}`);
-// console.log(getTrendingMovies());
-
-// export const getMoviesBySearch = (searchQuery) =>
-// 	axios.get(`/3/search/movie?api_key=${process.env.REACT_APP_KEY}&query=${searchQuery}&page=1&include_adult=false`);
-// console.log(getMoviesBySearch());
-
-// export const getMovieDetails = (movieId = 12) => axios.get(`/3/movie/${movieId}?api_key=${process.env.REACT_APP_KEY}`);
-// console.log(getMovieDetails());
-
-// export const getActorsFromMovie = (movieId = 12) =>
-// 	axios.get(`/3/movie/${movieId}/credits?api_key=${process.env.REACT_APP_KEY}`);
-// console.log(getActorsFromMovie());
-
-// export const getReviewsOfMovie = (movieId = 12) =>
-// 	axios.get(`/3/movie/${movieId}/reviews?api_key=${process.env.REACT_APP_KEY}`);
-// console.log(getReviewsOfMovie());

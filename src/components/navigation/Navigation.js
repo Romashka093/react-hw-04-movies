@@ -2,10 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import css from './Navigation.module.css';
 import globalCss from '../../index.module.css';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     marginBottom: 50,
     marginTop: 20,
@@ -22,7 +21,11 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: 2,
     },
   },
-}));
+  activeLink: {
+    color: '#3f51b5',
+    fontWeight: 'bold',
+  },
+});
 
 export default function Navigation() {
   const classes = useStyles();
@@ -31,12 +34,12 @@ export default function Navigation() {
       <Paper className={classes.root} elevation={3}>
         <ul>
           <li>
-            <NavLink to="/" exact activeClassName={css.activeLink}>
+            <NavLink to="/" exact activeClassName={classes.activeLink}>
               home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/movies" activeClassName={css.activeLink}>
+            <NavLink to="/movies" activeClassName={classes.activeLink}>
               movies
             </NavLink>
           </li>

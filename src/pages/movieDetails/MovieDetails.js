@@ -1,12 +1,12 @@
 import React, { Component, lazy, Suspense } from 'react';
 import moviesAPI from '../../services/movies-api';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import css from './MovieDetails.module.css';
-import globalcss from '../../index.module.css';
 import Spinner from '../../components/spinner/Spinner';
-import Button from '@material-ui/core/Button';
 import { Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import globalcss from '../../index.module.css';
+import css from './MovieDetails.module.css';
 
 const Cast = lazy(() =>
   import('./cast/Cast' /* webpackChunkName: "CastPage" */),
@@ -16,6 +16,7 @@ const Reviews = lazy(() =>
 );
 
 const getMovieId = props => props.match.params.movieId;
+
 class MovieDetails extends Component {
   state = {
     movie: [],
@@ -59,7 +60,7 @@ class MovieDetails extends Component {
     const ganres = movie.genres;
 
     return (
-      <Paper elevation={3}>
+      <Paper elevation={3} className={css.wrap}>
         {movie && (
           <div>
             <Button
@@ -68,6 +69,7 @@ class MovieDetails extends Component {
               size="large"
               variant="outlined"
               color="primary"
+              className={css.containerForDetails}
             >
               &#8592; Go back
             </Button>
@@ -78,7 +80,7 @@ class MovieDetails extends Component {
                   alt=""
                 />
 
-                <section>
+                <section className={css.containerForAddInfo}>
                   <Typography variant="h2" component="h2">
                     {movie.title}
                   </Typography>
@@ -104,9 +106,9 @@ class MovieDetails extends Component {
                 </section>
               </div>
             </div>
-            <section>
-              <p>Additional information</p>
-              <ul>
+            <section className={css.containerForAddInfo}>
+              <p className={css.titleAddInfo}>Additional information</p>
+              <ul className={css.addInfo}>
                 <li>
                   <NavLink
                     to={{

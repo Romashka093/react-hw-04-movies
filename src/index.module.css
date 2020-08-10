@@ -33,14 +33,26 @@ ol {
   margin: 0 auto;
 }
 
-@media (min-width: 660px) {
+@media (min-width: 768px) {
   .conteiner {
     width: 660px;
   }
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1280px) {
   .conteiner {
     width: 1240px;
+  }
+}
+
+@media (min-width: 1680px) {
+  .conteiner {
+    width: 1650px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .conteiner {
+    width: 1980px;
   }
 }
