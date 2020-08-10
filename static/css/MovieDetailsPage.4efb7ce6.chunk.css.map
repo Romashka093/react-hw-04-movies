@@ -1,1 +1,0 @@
-{"version":3,"sources":["MovieDetails.module.css"],"names":[],"mappings":"AAAA,gCACE,aAAc,CACd,eACF,CAEA,qCACE,YAAa,CAEb,YACF","file":"MovieDetailsPage.4efb7ce6.chunk.css","sourcesContent":[".activeLink {\n  color: #3f51b5;\n  font-weight: bold;\n}\n\n.wrapItemDetails {\n  display: flex;\n  /* flex-wrap: wrap; */\n  padding: 10px;\n}\n"]}

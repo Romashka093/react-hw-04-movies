@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-hw-04-movies"]=this["webpackJsonpreact-hw-04-movies"]||[]).push([[6],{167:function(e,t,a){"use strict";a.r(t);var n=a(0),l=a.n(n);t.default=function(e){var t=e.reviews;return t&&l.a.createElement("div",null,t.length?l.a.createElement("ul",null,t.map((function(e){return l.a.createElement("li",{key:e.id},l.a.createElement("h2",null,e.author),l.a.createElement("p",null,e.content))}))):l.a.createElement("h2",null,"No reviews for this movie for today, please come back later \ud83c\udfad"))}}}]);
-//# sourceMappingURL=ReviewsPage.db132ff6.chunk.js.map
