@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import default_avatar from '../user.svg';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -17,6 +18,10 @@ const useStyles = makeStyles({
   card: {
     paddingBottom: '5px',
     marginBottom: '20px',
+    '& .MuiCardMedia-img': {
+      width: '200px',
+      height: '300px',
+    },
   },
 });
 
@@ -30,12 +35,22 @@ const Cast = ({ actors }) => {
             {actors.map(actor => (
               <li key={actor.cast_id}>
                 <Card className={classes.card}>
-                  <CardMedia
-                    component="img"
-                    alt={`portrait of ${actor.name}`}
-                    image={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                    title={actor.name}
-                  />
+                  {actor.profile_path ? (
+                    <CardMedia
+                      component="img"
+                      alt={`portrait of ${actor.name}`}
+                      image={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                      title={actor.name}
+                    />
+                  ) : (
+                    <CardMedia
+                      component="img"
+                      alt={`portrait of ${actor.name}`}
+                      image={default_avatar}
+                      title={actor.name}
+                    />
+                  )}
+
                   <Typography gutterBottom color="textPrimary" component="h2">
                     {actor.name}
                   </Typography>

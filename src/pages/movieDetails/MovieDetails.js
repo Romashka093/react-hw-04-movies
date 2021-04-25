@@ -85,7 +85,7 @@ class MovieDetails extends Component {
                     {movie.title}
                   </Typography>
                   <Typography color="textSecondary" component="p">
-                    User score: {Math.round(movie.popularity)}%
+                    User score: {Math.round(movie.vote_average * 10)}%
                   </Typography>
                   <Typography variant="h4" component="h4">
                     Overview:
