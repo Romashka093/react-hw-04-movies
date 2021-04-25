@@ -1,3 +1,3 @@
-## 🎞️ Movies search
+## 🎞️ [Movie Gallery](https://bit.ly/3vjUNWY)
 
-### [🔗 gh-pages](https://romashka093.github.io/react-hw-04-movies/)
+#### [App](https://bit.ly/3vjUNWY) for watching popular and searching films. The application uses [themoviedb.org API](https://www.themoviedb.org).
